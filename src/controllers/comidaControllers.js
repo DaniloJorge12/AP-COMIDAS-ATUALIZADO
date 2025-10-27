@@ -80,7 +80,7 @@ export const atualizar = async (req, res) => {
     const id = parseInt(req.params.id);
     const dados = req.body;
 
-    const comidaExiste = await comidaModel.findById(id);
+    const comidaExiste = await comidaModel.listarUm(id);
     if (!comidaExiste) {
       return res.status(404).json({
         erro: 'Comida não encontrada',
@@ -106,7 +106,7 @@ export const deletar = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
 
-    const comidaExiste = await comidaModel.findById(id);
+    const comidaExiste = await comidaModel.listarUm(id);
     if (!comidaExiste) {
       return res.status(404).json({
         erro: 'Comida não encontrada',

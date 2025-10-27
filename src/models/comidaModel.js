@@ -15,10 +15,12 @@ export const listarUm  = async (id) => {
 
 //Model do criart
 export const criar = async (dados) => {
+  const { id, ...dadosSemId } = dados;
   return await prisma.comidas.create({
-    data: dados,
+    data: dadosSemId,
   });
 };
+
 
 //Model do delete
 export const deletar = async (id) => {
