@@ -1,14 +1,36 @@
-import { PrismaClient } from "@prisma/client"; 
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const findAll = async () => {
-    return await prisma.comidas.findMany({
-        orderBy: { nome: 'asc' }
-    });
-} 
+//Model de pegar todas comidas
+export const listarTodos = async () => {
+  return await prisma.comidas.findMany();
+};
 
-export const findById = async (id) => {
- return await prisma.comidas.findUnique({
-        where: { id: Number(id) }
-    })
-}
+//Model de pegar pelo id
+export const listarUm  = async (id) => {
+  return await prisma.comidas.findUnique({
+    where: { id },
+  });
+};
+
+//Model do criart
+export const criar = async (dados) => {
+  return await prisma.comidas.create({
+    data: dados,
+  });
+};
+
+//Model do delete
+export const deletar = async (id) => {
+  return await prisma.comidas.delete({
+    where: { id },
+  });
+};
+
+//Model do atualizar
+export const atualizar = async (id, dados) => {
+  return await prisma.comidas.update({
+    where: { id },
+    data: dados,
+  });
+};
